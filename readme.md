@@ -7,6 +7,7 @@ this project is a simple url shortener build using:
  
 ## Run project 
 docker build -t url-app .
+
 docker-compose up
 
 
