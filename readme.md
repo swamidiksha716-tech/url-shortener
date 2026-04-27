@@ -9,5 +9,5 @@ this project is a simple url shortener build using:
 docker build -t url-app .
 
 docker-compose up
-
+docker clean version
 
