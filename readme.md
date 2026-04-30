@@ -11,3 +11,7 @@ docker build -t url-app .
 docker-compose up
 docker clean version
 
+## what i learned:
+- containerization
+- deployment
+- debuggig ports 
