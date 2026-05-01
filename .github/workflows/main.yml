@@ -20,9 +20,9 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@65.2.69.97 "echo SSH SUCCESS"
+          ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@65.2.69.97 "echo CONNECTED"
 
-      - name: Connect and deploy
+      - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@65.2.69.97 << 'EOF'
           cd url-shortener
