@@ -26,6 +26,6 @@ def redirect_url(code):
     url = r.get(code)
     if url:
         return f"Original URL: {url.decode()}"
-    return "Not found"
+    return "hello diksha"
 
 app.run(host='0.0.0.0', port=5001)
