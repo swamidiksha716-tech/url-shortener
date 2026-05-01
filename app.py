@@ -12,7 +12,7 @@ def generate_code():
 
 @app.route('/')
 def home():
-    return "URL Shortener Running"
+    return "Hello babe "
 
 @app.route('/shorten')
 def shorten():
@@ -26,6 +26,6 @@ def redirect_url(code):
     url = r.get(code)
     if url:
         return f"Original URL: {url.decode()}"
-    return "hello diksha"
+    return "Not found"
 
 app.run(host='0.0.0.0', port=5001)
