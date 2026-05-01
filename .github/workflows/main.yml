@@ -10,13 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
-      - name: setup SSH key
+
+      - name: Setup SSH key
         run: |
           echo "${{ secrets.EC2_SSH_KEY }}" | base64 -d > key.pem
-          chmod 600 key.pem 
-          
+          chmod 600 key.pem
+
+      - name: Test SSH connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@65.2.69.97 "echo SSH SUCCESS"
+
       - name: Connect and deploy
         run: |
           ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@65.2.69.97 << 'EOF'
