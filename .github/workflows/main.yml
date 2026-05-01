@@ -10,14 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: connect and update
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: 65.2.69.97   
-          username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd url-shortener
-            git pull
-            sudo docker-compose down
-            sudo docker-compose up -d --build
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: setup SSH key
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" | base64 -d > key.pem
+          chmod 600 key.pem 
+          
+      - name: Connect and deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no -i key.pem ec2-user@65.2.69.97 << 'EOF'
+          cd url-shortener
+          git pull
+          sudo docker-compose down
+          sudo docker-compose up -d --build
+          EOF
